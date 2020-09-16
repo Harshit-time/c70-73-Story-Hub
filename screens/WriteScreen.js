@@ -1,13 +1,12 @@
 import React from 'react'; 
 import { StyleSheet, Text, View,TextInput,TouchableOpacity,ScrollView} from 'react-native'; 
-import AppHeader1 from '../Screens/AppHeader1'
 
 export default class WriteStoriesScreen extends React.Component{
     render(){
         return(
             <View style={{height:1300}}>
         
-            <AppHeader1/>
+           
              <TextInput style={styles.textIntro}
             placeholder = "Story Title"
             />
