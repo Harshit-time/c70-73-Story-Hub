@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { StyleSheet, Text, View,TextInput,TouchableOpacity,ScrollView} from 'react-native'; 
+import { StyleSheet, Text, View,TextInput,TouchableOpacity,ScrollView,KeyboardAvoidingView,ToastAndroid} from 'react-native'; 
 import firebase from 'firebase';
 import db from '../config.js';
 
@@ -23,15 +23,18 @@ export default class WriteStoriesScreen extends React.Component{
             story:this.state.story,
             date: firebase.firestore.Timestamp.now().toDate(),
     
-          })
+          });
+ToastAndroid.show("Awesome!You have published your Very First Story!",ToastAndroid.SHORT);   
+
     }
 
     render(){
         return(
             <View style={{height:1300}}>
-        
-            
-             <TextInput style={styles.textIntro}
+
+            <KeyboardAvoidingView  style = {styles.container} behavior = "padding" enabled/>
+
+            <TextInput style={styles.textIntro}
                 placeholder = "Story Title"
                 onChangeText={(text)=>{
                     this.setState({title:text})
@@ -66,6 +69,11 @@ export default class WriteStoriesScreen extends React.Component{
 
 
 const styles=StyleSheet.create({
+  container:{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center',
+       },
   textIntro:{
     borderWidth:4,
     borderRadius:2,
