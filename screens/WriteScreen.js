@@ -1,25 +1,61 @@
 import React from 'react'; 
 import { StyleSheet, Text, View,TextInput,TouchableOpacity,ScrollView} from 'react-native'; 
+import firebase from 'firebase';
+import db from '../config.js';
 
 export default class WriteStoriesScreen extends React.Component{
+
+    constructor(){
+        super();
+
+        this.state = ({
+            title:'',
+            author:'',
+            story:'',            
+        })
+    }
+
+
+    submitStory=async()=>{
+        db.collection('stories').add({
+            name:this.state.title,
+            author:this.state.author,
+            story:this.state.story,
+            date: firebase.firestore.Timestamp.now().toDate(),
+    
+          })
+    }
+
     render(){
         return(
             <View style={{height:1300}}>
         
-           
+            
              <TextInput style={styles.textIntro}
-            placeholder = "Story Title"
+                placeholder = "Story Title"
+                onChangeText={(text)=>{
+                    this.setState({title:text})
+                }}
+                value = {this.state.title}
             />
 
             <TextInput style={styles.textIntro}
-            placeholder = "Author"
+                placeholder = "Author"
+                onChangeText={(text)=>{
+                    this.setState({author:text})
+                }}
+                value = {this.state.author}
             />
 
             <TextInput  style={styles.textInput} 
-            placeholder = "WriteStory here"
+                placeholder = "WriteStory here"
+                onChangeText={(text)=>{
+                    this.setState({story:text})
+                }}
+                value = {this.state.story}
             />
 
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress = {this.submitStory()} style={styles.button}>
             <Text>Submit</Text>
             </TouchableOpacity>
     
