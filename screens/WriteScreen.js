@@ -1,5 +1,5 @@
 import React from 'react'; 
-import { StyleSheet, Text, View,TextInput,TouchableOpacity,ScrollView,KeyboardAvoidingView,ToastAndroid} from 'react-native'; 
+import { StyleSheet, Text, View,TextInput,TouchableOpacity,ScrollView,KeyboardAvoidingView,ToastAndroid,Image} from 'react-native'; 
 import firebase from 'firebase';
 import db from '../config.js';
 
@@ -37,7 +37,7 @@ ToastAndroid.show("Awesome!You have published your Very First Story!",ToastAndro
             <TextInput style={styles.textIntro}
                 placeholder = "Story Title"
                 onChangeText={(text)=>{
-                    this.setState({title:text})
+                    this.setState({title:text.trim().toLowerCase()})
                 }}
                 value = {this.state.title}
             />
@@ -45,7 +45,7 @@ ToastAndroid.show("Awesome!You have published your Very First Story!",ToastAndro
             <TextInput style={styles.textIntro}
                 placeholder = "Author"
                 onChangeText={(text)=>{
-                    this.setState({author:text})
+                    this.setState({author:text.trim().toLowerCase()})
                 }}
                 value = {this.state.author}
             />
