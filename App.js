@@ -1,9 +1,11 @@
 import React from 'react';
-import {createAppContainer} from 'react-navigation';
+import {StyleSheet,Image} from 'react-native';
+import {createAppContainer,createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import ReadScreen from './screens/ReadScreen';
 import WriteScreen from './screens/WriteScreen'; 
+import LoginScreen from './screens/LoginScreen';
 
 
 export default function App() {
@@ -24,30 +26,26 @@ tabBarIcon:({})=>{
 
   if(routeName === "Write"){
     return(
-      <Image source = {require("./assets/write.png")}  style={{width:30,height:30}}/>
+      <Image source = {require("./assets/write.png")}  style={styles.image}/>
     );
   }  
   else if(routeName === "Read"){
     return(
-      <Image source = {require("./assets/read.png")}  style={{width:30,height:30}}/>
+      <Image source = {require("./assets/read.png")}  style={styles.image}/>
     );
   }
 }
 })
 })
 
-const AppContainer = createAppContainer(TabNavigator); 
+const switchNavigator = createSwitchNavigator({
+  LoginScreen:{screen:LoginScreen},
+  TabNavigator:{screen:TabNavigator},
+})
+
+const AppContainer  = createAppContainer(switchNavigator);
 
 
-
-
-
-
-
-
-
-
-/*
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -55,7 +53,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image: {
+    width:30,
+    height:30
+  }
 });
-*/
-
-
