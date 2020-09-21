@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { Text, View, FlatList, StyleSheet, TextInput, TouchableOpacity,Image} from 'react-native';
 import db from '../config'
 import writeScreen from './WriteScreen';
 
